@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMMO - Sales Enablement</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Font Setup - approximating the elegant serif from the design */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap');
+
+        :root {
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-serif: 'Playfair Display', Georgia, serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .font-serif-display {
+            font-family: var(--font-serif);
+        }
+
+        /* Typography Utilities */
+        .text-balance { text-wrap: balance; }
+        .text-pretty { text-wrap: pretty; }
+
+        /* Animation keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+                filter: blur(4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Base animation classes */
+        .animate-fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        .animate-fade-in {
+            opacity: 0;
+            animation: fadeIn 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        .animate-scale-in {
+            opacity: 0;
+            animation: scaleIn 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        /* Staggered delays */
+        .delay-0 { animation-delay: 0ms; }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-600 { animation-delay: 600ms; }
+
+        /* Custom Utilities */
+        .btn-hover {
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .btn-hover:hover {
+            transform: translateY(-1px);
+            opacity: 0.9;
+        }
+        
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm animate-fade-in delay-0">
+        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex-shrink-0 flex items-center gap-1">
+                <a href="#" class="text-2xl font-serif-display tracking-tight">IMMO</a>
+                <span class="text-[10px] -mt-2 text-gray-500">TM</span>
+            </div>
+
+            <!-- Center Links (Desktop) -->
+            <div class="hidden xl:flex items-center gap-8 text-[15px] font-medium text-[#475569]">
+                <div class="group relative flex items-center gap-1 cursor-pointer hover:text-black transition-colors">
+                    Products
+                    <svg class="w-3 h-3 text-gray-400 group-hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="group relative flex items-center gap-1 cursor-pointer hover:text-black transition-colors">
+                    Capabilities
+                    <svg class="w-3 h-3 text-gray-400 group-hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="group relative flex items-center gap-1 cursor-pointer hover:text-black transition-colors">
+                    Solutions
+                    <svg class="w-3 h-3 text-gray-400 group-hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="group relative flex items-center gap-1 cursor-pointer hover:text-black transition-colors">
+                    Resources
+                    <svg class="w-3 h-3 text-gray-400 group-hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="group relative flex items-center gap-1 cursor-pointer hover:text-black transition-colors">
+                    Customer stories
+                    <svg class="w-3 h-3 text-gray-400 group-hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <a href="#" class="hover:text-black transition-colors">Pricing</a>
+            </div>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-6 md:gap-8">
+                <a href="#" class="hidden md:block text-[15px] font-medium text-gray-600 hover:text-black transition-colors">Mission</a>
+                <a href="#" class="hidden md:block text-[15px] font-medium text-gray-600 hover:text-black transition-colors">Careers</a>
+                <a href="#" class="bg-black text-white text-[15px] font-medium px-5 py-2.5 rounded-full btn-hover">Request Access</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Hero Section -->
+    <main class="pt-32 md:pt-40 pb-12 px-6 max-w-[1440px] mx-auto">
+        
+        <!-- Headlines -->
+        <div class="mb-16 md:mb-24">
+            <h1 class="font-serif-display text-6xl sm:text-7xl md:text-8xl lg:text-[6.5rem] leading-[0.95] tracking-tight text-balance">
+                <span class="block text-black animate-fade-in-up delay-100">Institutional Access</span>
+                <span class="block text-gray-300 animate-fade-in-up delay-200 mt-1 md:mt-2">Residential Portfolios</span>
+            </h1>
+        </div>
+
+        <!-- Middle Action Band -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-10 mb-12">
+            
+            <!-- Buttons -->
+            <div class="flex flex-wrap items-center gap-3 animate-fade-in-up delay-300">
+                <a href="#" class="bg-black text-white text-base font-medium px-7 py-3.5 rounded-full btn-hover inline-flex items-center justify-center">
+                    Book an intro
+                </a>
+                <a href="#" class="bg-gray-100 text-black text-base font-medium px-7 py-3.5 rounded-full btn-hover hover:bg-gray-200 transition-colors inline-flex items-center justify-center">
+                    Explore Portfolios
+                </a>
+            </div>
+
+            <!-- Description Text -->
+            <div class="lg:max-w-md xl:max-w-lg animate-fade-in-up delay-400">
+                <p class="text-lg md:text-[1.15rem] leading-relaxed text-pretty text-gray-900">
+                    Unlock the €2.5B residential market. IMMO uses AI-powered sourcing and underwriting technology to aggregate fragmented small properties into institutional-grade portfolios.
+                </p>
+            </div>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="relative w-full rounded-t-[32px] md:rounded-t-[48px] overflow-hidden animate-scale-in delay-500">
+            <!-- Using a placeholder that mimics the beige tone and content of the original image -->
+            <!-- In a real scenario, this would be the photo of the hand holding the phone -->
+            <img 
+                src="https://placehold.co/1400x800/e5e0d8/555555?text=Institutional+Residential+Portfolio+UI" 
+                alt="IMMO platform showing AI-powered property underwriting" 
+                class="w-full h-auto object-cover aspect-[16/10] md:aspect-[2/1]"
+            >
+            
+            <!-- Decorative overlay to simulate the lighting in the original photo (subtle gradient) -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-black/5 to-transparent pointer-events-none"></div>
+        </div>
+
+    </main>
+
+</body>
+</html>
